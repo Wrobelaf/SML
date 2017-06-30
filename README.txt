@@ -1,4 +1,5 @@
 Environment variables explicently required for the SML project:
+A commited change:
 
 export DEV_HOME=/windows/D
 export CONFIG=Debug
