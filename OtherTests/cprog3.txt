@@ -1,0 +1,8 @@
+10 print "Allan is the biggest biggest gigantic poo's in the world."
+15 let str="kieran again="
+20 let a=3
+30 let b=a
+40 print str,3-a+b
+50 end
+
+

@@ -1,0 +1,34 @@
+include ../MakeInclude
+
+SRC = machine.cpp machine_state.cpp memory.cpp SML.cpp
+OBJ = $(SRC:.cpp=.o)
+
+SML : $(OBJ)
+	cd $(CONFIG); ld $(LDFLAGS) -L$(LD_LIBRARY_PATH) -lSMLib -lm $(OBJ) -o $@; cd -
+
+libSML.so : $(OBJ)
+	cd $(CONFIG); ld $(LDFLAGS) -G $(OBJ) -o $@; cd -
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) -fPIC $< -o $(CONFIG)/$@
+
+depend:
+	makedepend $(SRC) 2>/dev/null
+	
+clean:
+	rm -fR $(CONFIG)/*
+
+# DO NOT DELETE
+
+machine.o: machine.h memory.h machine_state.h /usr/include/math.h
+machine.o: /usr/include/features.h /usr/include/sys/cdefs.h
+machine.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
+machine.o: /usr/include/gnu/stubs-32.h /usr/include/bits/huge_val.h
+machine.o: /usr/include/bits/mathdef.h /usr/include/bits/mathcalls.h
+machine_state.o: machine_state.h /usr/include/math.h /usr/include/features.h
+machine_state.o: /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h
+machine_state.o: /usr/include/gnu/stubs.h /usr/include/gnu/stubs-32.h
+machine_state.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+machine_state.o: /usr/include/bits/mathcalls.h
+memory.o: memory.h
+SML.o: memory.h machine.h machine_state.h
