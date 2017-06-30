@@ -1,0 +1,6 @@
+#
+# Common includes for the SML suite.
+#
+
+SML_LIBS = -L$(LD_LIBRARY_PATH) -L$(DEV_HOME)/SML/SMLib/$(CONFIG) -L$(DEV_HOME)/SML/SML/$(CONFIG)
+
